@@ -14,13 +14,14 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
-  console.log("--------Input JSON----------",req.body)
+  console.log("--------Input JSON----------",req.body,"-------------------------------");
   var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
       : "Seems like some problem. Speak again.";
+  console.log("---------Speech----------", speech);
   return res.json({
     "speech": speech,
     "displayText": speech,
