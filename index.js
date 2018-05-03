@@ -128,9 +128,21 @@ restService.post("/audio", function(req, res) {
       break;
   }
   return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
+   "fulfillmentText": speech,
+   "source": "Web-hook",
+"payload": {
+  "google": {
+    "expectUserResponse": true,
+    "richResponse": {
+      "items": [
+        {
+          "simpleResponse": {
+            "textToSpeech": speech
+          }
+        }
+      ]
+    }
+  }
   });
 });
 
@@ -200,9 +212,21 @@ restService.post("/slack-test", function(req, res) {
     ]
   };
   return res.json({
-    speech: "speech",
-    displayText: "speech",
-    source: "webhook-echo-sample",
+   "fulfillmentText": speech,
+   "source": "Web-hook",
+"payload": {
+  "google": {
+    "expectUserResponse": true,
+    "richResponse": {
+      "items": [
+        {
+          "simpleResponse": {
+            "textToSpeech": speech
+          }
+        }
+      ]
+    }
+  },
     data: {
       slack: slack_message
     }
